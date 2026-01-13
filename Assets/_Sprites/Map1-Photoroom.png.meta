@@ -1,0 +1,1007 @@
+fileFormatVersion: 2
+guid: dc323bf01f749054abe8bf35d9ad2753
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 85
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Map1-Photoroom_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 472.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83a02d7f646472f47886d265aa951763
+      internalID: 615769767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_1
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 472.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec8514af33f26974d81e10b732f5321d
+      internalID: 190180415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_2
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 472.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e32e48a8292d96b4d808b667e39ecb68
+      internalID: 1966837803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_3
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 472.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6093e680eee67824ba802bf64ab50d7a
+      internalID: -35627989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_4
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 472.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e020380ce8f4d5e46b8a5010fd62fef4
+      internalID: -155609527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_5
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 472.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eeb7af7c0cf92f408f30043dec1aa03
+      internalID: 1965226805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_6
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 472.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41a2dd3ef1a3aa7478734fb09a3a4515
+      internalID: -1927743279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_7
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 472.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f21c8168e73b256489109ac62bbf0277
+      internalID: -1558624417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 361.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ab85f45e95cf32489f691799dcaf700
+      internalID: -526014606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_9
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 361.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 118689ba870a2e549a0050ffd02dedad
+      internalID: -2022867163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_10
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 361.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69111e0a446a6934d91facb41196bdc9
+      internalID: 1687489746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_11
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 361.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5585c008e59b4b4d8e9a1f3250c76aa
+      internalID: -441278312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_12
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 361.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e67703067d11d0489b74e0aa3a88fb1
+      internalID: -925832420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_13
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 361.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10fdf7d6277e04e45b76e0298715be24
+      internalID: 1246225782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_14
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 361.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f196cc6fc91cb84f84102d9e5d8933d
+      internalID: 941971295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_15
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 361.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a044831f3e7787842a0924880c79a68f
+      internalID: 1702114499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 250.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cff60cbd5db7ae4d93ec97c1b6b71d6
+      internalID: -1548572858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_17
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 250.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41bbe1c9c7d349547a2f98808036f738
+      internalID: 1791269947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_18
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 250.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51374b1386ca966469456154da64c4c3
+      internalID: 804307002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_19
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 250.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f876486372da4848a2d2e148f214f57
+      internalID: 237933407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_20
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 250.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d26438fc46cfc6d4ab99d0560fdf50e2
+      internalID: 1345358631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_21
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 250.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 565944636a64a694c86946403404b115
+      internalID: -360224344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_22
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 250.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9ca855277060e5488552cecdb02b472
+      internalID: 224842193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 139.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bd7be6e66943ff449f9a5444ffd7cad
+      internalID: 635518305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_24
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 139.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6efd5d8b32eff949890eacdf953784a
+      internalID: -377729661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_25
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 139.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2d08ba8ee65b38438daef0c64ad3ada
+      internalID: -165405735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_26
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 139.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd6dae3ebe21abd4fa5eb2a4caf00fc3
+      internalID: -91026680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_27
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 139.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c35fab2e13b3fae42830b7564fed1c28
+      internalID: 950033195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_28
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 139.2
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a26df161ca1d4b41bfe29ba81ca8967
+      internalID: 1903657983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 28.199997
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1136862c76da784faa717e9e883eec8
+      internalID: -1229469754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_30
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 28.199997
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54a590bff5719a14486e940ce8a8c417
+      internalID: 441515476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_31
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 28.199997
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7badcec742a339f409e7ca3373c31889
+      internalID: 309586464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_32
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 28.199997
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac7a3d206b3fa8c47993465b6a05189f
+      internalID: -2144213903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_33
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 28.199997
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b63faddd2b731e2459bf2e75a5eb134f
+      internalID: -840081178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_34
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 28.199997
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0930ed05550905f4f91fbc2abb35d2d2
+      internalID: 950404733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_35
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 28.199997
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcba534796644f34ebdb0ff72ba9fbcd
+      internalID: 1789451554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_36
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 28.199997
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b213fca01983a1b48842e933492eb876
+      internalID: -1191132606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_37
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 28.199997
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc271c47b36240b47b0f7bf83c32441c
+      internalID: -217368993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_38
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 28.199997
+        width: 102.4
+        height: 86.8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85f9cd4c988e48e459cb14d4e1d5401c
+      internalID: 35402518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map1-Photoroom_39
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 229
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eff1c6aa083ee346be882fe25fbfd6a
+      internalID: -1555238149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Map1-Photoroom_0: 615769767
+      Map1-Photoroom_1: 190180415
+      Map1-Photoroom_10: 1687489746
+      Map1-Photoroom_11: -441278312
+      Map1-Photoroom_12: -925832420
+      Map1-Photoroom_13: 1246225782
+      Map1-Photoroom_14: 941971295
+      Map1-Photoroom_15: 1702114499
+      Map1-Photoroom_16: -1548572858
+      Map1-Photoroom_17: 1791269947
+      Map1-Photoroom_18: 804307002
+      Map1-Photoroom_19: 237933407
+      Map1-Photoroom_2: 1966837803
+      Map1-Photoroom_20: 1345358631
+      Map1-Photoroom_21: -360224344
+      Map1-Photoroom_22: 224842193
+      Map1-Photoroom_23: 635518305
+      Map1-Photoroom_24: -377729661
+      Map1-Photoroom_25: -165405735
+      Map1-Photoroom_26: -91026680
+      Map1-Photoroom_27: 950033195
+      Map1-Photoroom_28: 1903657983
+      Map1-Photoroom_29: -1229469754
+      Map1-Photoroom_3: -35627989
+      Map1-Photoroom_30: 441515476
+      Map1-Photoroom_31: 309586464
+      Map1-Photoroom_32: -2144213903
+      Map1-Photoroom_33: -840081178
+      Map1-Photoroom_34: 950404733
+      Map1-Photoroom_35: 1789451554
+      Map1-Photoroom_36: -1191132606
+      Map1-Photoroom_37: -217368993
+      Map1-Photoroom_38: 35402518
+      Map1-Photoroom_39: -1555238149
+      Map1-Photoroom_4: -155609527
+      Map1-Photoroom_5: 1965226805
+      Map1-Photoroom_6: -1927743279
+      Map1-Photoroom_7: -1558624417
+      Map1-Photoroom_8: -526014606
+      Map1-Photoroom_9: -2022867163
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
