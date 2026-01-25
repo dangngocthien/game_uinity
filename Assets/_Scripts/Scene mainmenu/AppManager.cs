@@ -1,4 +1,5 @@
 ﻿using Fusion;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -23,6 +24,11 @@ public class AppManager : MonoBehaviour
     [SerializeField] private TMP_InputField inputPlayerName;
     [SerializeField] private TextMeshProUGUI textRoomIDDisplay;
 
+    [Header("--- ROOM LIST UI ---")]
+    [SerializeField] private GameObject panelRoomList;       //Panel_RoomList 
+    [SerializeField] private Transform roomListContent;      //"Content" của ScrollView
+    [SerializeField] private GameObject roomItemPrefab;      //Prefab RoomItemPrefab vào
+
     // THÊM: Text để hiển thị danh sách người chơi
     [SerializeField] private TextMeshProUGUI textPlayerList;
     // THÊM: Nút hành động chính (Sẵn sàng/Bắt đầu)
@@ -38,14 +44,97 @@ public class AppManager : MonoBehaviour
     private void Start()
     {
         ShowPanel(panelTapToStart);
-        if (basicSpawner == null) basicSpawner = FindObjectOfType<BasicSpawner>();
+        
+        // ✅ FIX: Lấy BasicSpawner từ Singleton thay vì FindObjectOfType
+        // Vì BasicSpawner dùng DontDestroyOnLoad nên phải lấy qua Instance
+        if (basicSpawner == null)
+        {
+            basicSpawner = BasicSpawner.Instance;
+        }
+        
+        // ✅ FALLBACK: Nếu vẫn null thì thử FindObjectOfType
+        if (basicSpawner == null)
+        {
+            basicSpawner = FindObjectOfType<BasicSpawner>();
+        }
 
         // Đảm bảo ô nhập tên trống trơn, để người chơi tự quyết định có nhập hay không
         if (inputPlayerName != null) inputPlayerName.text = "";
+        
+        // ✅ FIX: Clear LobbyPlayer list khi scene load lại
+        // Vì các LobbyPlayer cũ đã bị destroy khi chuyển scene
+        LobbyPlayer.List.Clear();
+        
+        Debug.Log($"[AppManager] Start - BasicSpawner: {(basicSpawner != null ? "Found" : "NULL")}");
     }
 
-    // --- 1. LOGIC CHUYỂN PANEL CHÍNH ---
+    // ✅ THÊM: Đảm bảo luôn có reference đến BasicSpawner
+    private BasicSpawner GetSpawner()
+    {
+        if (basicSpawner == null)
+        {
+            basicSpawner = BasicSpawner.Instance;
+        }
+        if (basicSpawner == null)
+        {
+            basicSpawner = FindObjectOfType<BasicSpawner>();
+        }
+        return basicSpawner;
+    }
 
+    public void OnSuccessfullyJoinedSession()
+    {
+        // 1. Chuyển sang màn hình Lobby
+        ShowPanel(panelLobby);
+
+        // 2. Cập nhật cái tên phòng lên góc màn hình (nếu cần)
+        var spawner = GetSpawner();
+        if (spawner != null && spawner.Runner != null)
+        {
+            SetupLobbyUI(spawner.Runner.SessionInfo.Name);
+        }
+    }
+
+    // Nút "TÌM PHÒNG" sẽ gọi hàm này
+    public void OnClickOpenRoomList()
+    {
+        ShowPanel(panelRoomList);
+
+        // Bảo Spawner kết nối vào Sảnh Chờ (Lobby) để bắt đầu nhận danh sách
+        var spawner = GetSpawner();
+        if (spawner != null)
+        {
+            spawner.JoinLobby();
+        }
+    }
+
+    public void UpdateSessionListUI(List<SessionInfo> sessionList)
+    {
+        // 1. Dọn dẹp: Xóa sạch danh sách cũ
+        foreach (Transform child in roomListContent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // 2. Vẽ mới: Spawn thẻ cho từng phòng
+        foreach (var session in sessionList)
+        {
+            // Bỏ qua các phòng ẩn hoặc phòng đã đóng
+            if (!session.IsVisible || !session.IsOpen) continue;
+
+            GameObject newItem = Instantiate(roomItemPrefab, roomListContent);
+
+            // Điền thông tin vào thẻ
+            if (newItem.TryGetComponent<RoomListEntry>(out var entry))
+            {
+                entry.SetInfo(session, GetSpawner());
+            }
+        }
+    }
+
+
+
+    // --- 1. LOGIC CHUYỂN PANEL CHÍNH ---
     public void OnTapToStart()
     {
         ShowPanel(panelModeSelect);
@@ -64,28 +153,42 @@ public class AppManager : MonoBehaviour
 
     public void OnClickBack()
     {
-        // Logic quay lại tùy ngữ cảnh
+        var spawner = GetSpawner();
+        
+        // 1. Nếu đang ở màn hình Connection (Màn hình chọn Tạo/Tìm/Nhập ID)
         if (panelConnection.activeSelf)
         {
-            // Nếu đang ở màn Connection mà đang hiện ô nhập ID -> Quay lại chọn nút
             if (groupJoinInput != null && groupJoinInput.activeSelf)
             {
                 groupJoinInput.SetActive(false);
                 groupMainOptions.SetActive(true);
                 return;
             }
-            // Nếu đang ở màn Connection thường -> Quay về Mode Select
             ShowPanel(panelModeSelect);
         }
+        // 2. Nếu đang ở trong Lobby (Đã vào phòng chờ)
         else if (panelLobby.activeSelf)
         {
-            // Nếu đang ở Lobby -> Rời phòng về Connection
-            // (Cần thêm logic ngắt kết nối runner ở đây nếu muốn kỹ hơn)
+            // ✅ FIX: Disconnect khi rời lobby
+            if (spawner != null)
+            {
+                spawner.LeaveLobby();
+            }
             OnClickPlayOnline();
+        }
+        // 3. Nếu đang ở Danh Sách Phòng (Room List)
+        else if (panelRoomList.activeSelf)
+        {
+            ShowPanel(panelConnection);
+
+            if (spawner != null)
+            {
+                spawner.LeaveLobby();
+            }
         }
         else
         {
-            ShowPanel(panelModeSelect);
+            ShowPanel(panelTapToStart);
         }
     }
 
@@ -108,9 +211,10 @@ public class AppManager : MonoBehaviour
         ShowPanel(panelLobby);
 
         // [QUAN TRỌNG] Gọi kết nối ngay tại đây!
-        if (basicSpawner != null)
+        var spawner = GetSpawner();
+        if (spawner != null)
         {
-            basicSpawner.StartGameByKey(_targetMode, _targetRoomName);
+            spawner.StartGameByKey(_targetMode, _targetRoomName);
         }
     }
 
@@ -125,9 +229,10 @@ public class AppManager : MonoBehaviour
         ShowPanel(panelLobby);
 
         // [QUAN TRỌNG] Gọi kết nối ngay tại đây!
-        if (basicSpawner != null)
+        var spawner = GetSpawner();
+        if (spawner != null)
         {
-            basicSpawner.StartGameByKey(_targetMode, _targetRoomName);
+            spawner.StartGameByKey(_targetMode, _targetRoomName);
         }
     }
 
@@ -144,9 +249,10 @@ public class AppManager : MonoBehaviour
         PlayerPrefs.SetString("PlayerName", playerName);
         PlayerPrefs.Save();
 
-        if (basicSpawner != null)
+        var spawner = GetSpawner();
+        if (spawner != null)
         {
-            basicSpawner.StartGameByKey(_targetMode, _targetRoomName);
+            spawner.StartGameByKey(_targetMode, _targetRoomName);
         }
     }
 
@@ -157,6 +263,7 @@ public class AppManager : MonoBehaviour
         panelModeSelect.SetActive(false);
         panelConnection.SetActive(false);
         panelLobby.SetActive(false);
+        panelRoomList.SetActive(false);
 
         if (panelToShow != null) panelToShow.SetActive(true);
     }
@@ -182,9 +289,14 @@ public class AppManager : MonoBehaviour
     {
         if (textPlayerList == null) return;
 
+        var spawner = GetSpawner();
+        
         string content = "";
-        bool amIHost = basicSpawner.Runner != null && basicSpawner.Runner.IsServer;
+        bool amIHost = spawner != null && spawner.Runner != null && spawner.Runner.IsServer;
         bool allReady = true;
+
+        // Xóa những thằng đã bị Destroy (null) ra khỏi danh sách trước khi vẽ
+        LobbyPlayer.List.RemoveAll(x => x == null || x.Object == null);
 
         foreach (var p in LobbyPlayer.List)
         {
@@ -229,7 +341,7 @@ public class AppManager : MonoBehaviour
         {
             // Là khách
             // Tìm đối tượng LobbyPlayer của chính mình
-            var myPlayer = LobbyPlayer.List.FirstOrDefault(x => x.Object.HasInputAuthority);
+            var myPlayer = LobbyPlayer.List.FirstOrDefault(x => x.Object != null && x.Object.HasInputAuthority);
             if (myPlayer != null)
             {
                 textBtnAction.text = myPlayer.IsReady ? "HỦY SẴN SÀNG" : "SẴN SÀNG";
@@ -240,46 +352,61 @@ public class AppManager : MonoBehaviour
 
     public void OnClickLobbyAction()
     {
-        if (basicSpawner == null || basicSpawner.Runner == null)
+        var spawner = GetSpawner();
+        
+        // ✅ FIX: Kiểm tra kỹ hơn và log rõ ràng hơn
+        if (spawner == null)
         {
-            Debug.LogError("Chưa kết nối mạng!");
+            Debug.LogError("[AppManager] BasicSpawner is NULL!");
+            return;
+        }
+        
+        if (spawner.Runner == null)
+        {
+            Debug.LogError("[AppManager] Runner is NULL! Đang đợi kết nối...");
+            // ✅ THÊM: Không return, có thể đang trong quá trình kết nối
+            // Hiển thị thông báo cho user
+            return;
+        }
+        
+        if (!spawner.Runner.IsRunning)
+        {
+            Debug.LogError("[AppManager] Runner không đang chạy!");
             return;
         }
 
         // Tìm thẻ bài của chính mình
         var myPlayer = LobbyPlayer.List.FirstOrDefault(x => x.Object != null && x.Object.HasInputAuthority);
 
-        if (myPlayer == null) return;
+        if (myPlayer == null)
+        {
+            Debug.LogWarning("[AppManager] Chưa tìm thấy LobbyPlayer của mình, đang đợi spawn...");
+            return;
+        }
 
         string nameInInput = (inputPlayerName != null) ? inputPlayerName.text : "";
-        if (!string.IsNullOrEmpty(nameInInput))
-        {
-            basicSpawner.TempPlayerName = nameInInput;
-        }
-        else
-        {
-            basicSpawner.TempPlayerName = myPlayer.PlayerName.ToString();
-        }
-
+       
         // --- XỬ LÝ CHO HOST (SERVER) ---
-        if (basicSpawner.Runner.IsServer)
+        if (spawner.Runner.IsServer)
         {
-            // Kiểm tra xem tên trong ô nhập có khác tên đang hiển thị không?
-            // (ToString() là bắt buộc vì PlayerName là dạng NetworkString)
+            // Kiểm tra đổi tên (Logic cũ giữ nguyên)
             if (!string.IsNullOrEmpty(nameInInput) && myPlayer.PlayerName.ToString() != nameInInput)
             {
-                // TRƯỜNG HỢP 1: CẬP NHẬT TÊN TRƯỚC
-                // Host tự sửa trực tiếp (nhanh hơn RPC)
                 myPlayer.SetNameDirectly(nameInInput);
-
-                Debug.Log("Host đã cập nhật tên. Bấm lần nữa để bắt đầu game.");
-                return; // QUAN TRỌNG: Dừng lại ở đây, KHÔNG load scene ngay!
+                Debug.Log("Host đã cập nhật tên...");
+                return;
             }
 
             // TRƯỜNG HỢP 2: TÊN ĐÃ KHỚP -> BẮT ĐẦU GAME
             Debug.Log("Tên đã chốt, bắt đầu vào game!");
-            basicSpawner.Runner.SessionInfo.IsOpen = false;
-            basicSpawner.Runner.LoadScene(SceneRef.FromIndex(1));
+
+            // --- THÊM DÒNG NÀY ---
+            // Bảo Spawner: "Ghi lại tên của mọi người ngay đi, sắp chuyển cảnh rồi!"
+            spawner.CachePlayerNames();
+            // ---------------------
+
+            spawner.Runner.SessionInfo.IsOpen = false;
+            spawner.Runner.LoadScene(SceneRef.FromIndex(1));
         }
         // --- XỬ LÝ CHO CLIENT (KHÁCH) ---
         else

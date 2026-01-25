@@ -9,6 +9,8 @@ public class BaseBullet : NetworkBehaviour
     [Header("VFX")]
     [SerializeField] protected NetworkPrefabRef explosionAnimPrefab; // Prefab vụ nổ
 
+    [Networked] public PlayerRef OwnerID { get; set; }
+
     // Hàm sinh ra vụ nổ (Con gọi hàm này khi cần nổ)
     protected void SpawnExplosion(Vector3 position)
     {
@@ -27,7 +29,7 @@ public class BaseBullet : NetworkBehaviour
             var targetHealth = target.GetComponent<HealthComponent>();
             if (targetHealth != null)
             {
-                targetHealth.TakeDamage(damage);
+                targetHealth.TakeDamage(damage, Object.InputAuthority);
             }
         }
     }

@@ -14,6 +14,7 @@ public class MysteryDropItem
     public float dropChance = 10f;
 }
 
+
 public class MysteryBox : NetworkBehaviour
 {
     [Header("Cấu hình hộp quà")]

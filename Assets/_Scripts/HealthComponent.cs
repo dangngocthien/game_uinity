@@ -1,72 +1,115 @@
 ﻿using Fusion;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthComponent : NetworkBehaviour
 {
-    [Header("Setting")]
+    [Header("Settings")]
     [SerializeField] private int maxHealth = 100;
     public int MaxHealth => maxHealth;
 
-    //[Networked,OnChangedRender(nameof(OnHealthChange))]
+    // --- ĐÃ XÓA BIẾN LocalUI ĐỂ KHÔNG BỊ LỖI KÉO THẢ ---
 
     [Networked] public int CurrentHealth { get; set; }
 
-    public event Action<float> OnHealthChangedEvent; // Trả về % máu (0.0 đến 1.0)
-    public event Action OnDeathEvent;//sự kiện khi died
-    public event Action<int> OnDamageTakeEvent;// Sự kiện khi bị đau
+    // Sự kiện để UI tự nghe (Observer Pattern)
+    public event Action<float> OnHealthChangedEvent;
+    public event Action OnDeathEvent;
 
     public bool IsDead => CurrentHealth <= 0;
 
     public override void Spawned()
     {
-        if(Object.HasStateAuthority)
+        // 1. Chỉ Server mới được set máu ban đầu
+        if (Object.HasStateAuthority)
         {
             CurrentHealth = maxHealth;
         }
 
-        OnHealthChangedEvent?.Invoke((float)CurrentHealth / maxHealth);  
+        // 2. Cập nhật UI ngay khi sinh ra
+        OnHealthChangedEvent?.Invoke((float)CurrentHealth / maxHealth);
     }
 
-    public void TakeDamage(int damageAmount)
+    // Hàm nhận sát thương
+    public void TakeDamage(int damageAmount, PlayerRef attackerRef = default)
     {
-        if (IsDead && !Object.HasStateAuthority) return;
+        if (IsDead) return;
 
-        CurrentHealth -= damageAmount;
-
-        if(CurrentHealth <= 0)
+        // Chỉ Server tính toán sát thương
+        if (Object.HasStateAuthority)
         {
-            CurrentHealth = 0;
-            Die();
+            CurrentHealth -= damageAmount;
+
+            // Báo cho UI cập nhật
+            OnHealthChangedEvent?.Invoke((float)CurrentHealth / maxHealth);
+
+            if (CurrentHealth <= 0)
+            {
+                CurrentHealth = 0;
+                // Báo tử cho toàn server
+                RPC_BroadcastDeath(attackerRef);
+            }
         }
     }
 
+    // Hàm Hồi máu (ĐÂY LÀ HÀM BẠN ĐANG BỊ THIẾU)
     public void Heal(int healAmount)
     {
-        if (IsDead && !Object.HasStateAuthority) return;
+        if (IsDead) return;
 
-        CurrentHealth += healAmount;
-        if(CurrentHealth >= maxHealth)
+        // Chỉ Server mới được hồi máu
+        if (Object.HasStateAuthority)
         {
-            CurrentHealth = maxHealth;
+            CurrentHealth += healAmount;
+
+            // Không được hồi quá máu tối đa
+            if (CurrentHealth > maxHealth)
+            {
+                CurrentHealth = maxHealth;
+            }
+
+            // Báo cho UI cập nhật
+            OnHealthChangedEvent?.Invoke((float)CurrentHealth / maxHealth);
         }
     }
 
-
-    private void Die()
+    // Hàm báo tử qua mạng (RPC)
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    private void RPC_BroadcastDeath(PlayerRef killerRef)
     {
+
+        // Kích hoạt sự kiện -> LocalUI và PlayerController sẽ tự nghe thấy và xử lý
         OnDeathEvent?.Invoke();
 
-        Runner.Despawn(Object);
+        if(GameplayUIManager.Instance != null)
+        {
+            string killerName = "Môi trường";
+            string victimName = "Ai đó";
+
+            //nếu killer = none thì là môi trường kill
+            if (killerRef == PlayerRef.None)
+            {
+                killerName = "Môi trường";
+            }
+            else if (killerRef == Object.InputAuthority)
+            {
+                killerName = "Chính mình";
+            }
+            else
+            {
+                var killerObj = PlayerController.GetPlayerFromRef(killerRef);
+                if (killerObj != null) killerName = killerObj.NickName.ToString();
+            }
+
+            // 2. Tìm tên NẠN NHÂN (Chính là thằng đang giữ script này)
+            var victimObj = GetComponent<PlayerController>();
+            if (victimObj != null) victimName = victimObj.NickName.ToString();
+
+            // 3. Gửi sang UI
+            GameplayUIManager.Instance.AddKillFeed(killerName, victimName);
+
+        }
+        
+        
     }
-
-    //void OnHealthChange()
-    //{
-    //    float healthPercent = (float)CurrentHealth/maxHealth;
-
-    //    OnHealthChangedEvent?.Invoke(healthPercent);
-    //}
-
 }

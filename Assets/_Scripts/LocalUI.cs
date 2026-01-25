@@ -1,101 +1,116 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using Fusion;
+using TMPro; // Nhớ thêm thư viện này để dùng Text
 
 public class LocalUI : MonoBehaviour
 {
-    [Header("UI Compoment")]
-    [SerializeField] private Image healthFillImage;
-    [SerializeField] private TextMeshProUGUI ammoText;
+    // Tạo Singleton để Player dễ dàng tìm thấy
+    public static LocalUI Instance;
 
-    [SerializeField] private Image dashOverlayImage;
+    [Header("1. Health UI")]
+    [SerializeField] private Image healthFillImage; // Kéo ảnh Fill của thanh máu vào đây
 
-    private PlayerController _targetPlayer;
-    private HealthComponent _targetHealth;
+    [Header("2. Dash UI")]
+    [SerializeField] private Image[] dashFillImages;   // Kéo ảnh Fill của Dash vào đây
+    [SerializeField] private GameObject dashIconGroup; // (Tùy chọn) Để tắt bật cả cụm Dash
 
-    
-    private void Update()
+    [Header("3. Ammo UI")]
+    [SerializeField] private TextMeshProUGUI ammoText; // Kéo Text hiển thị số đạn vào
+
+    [Header("4. PC, Mobile Instructions")]
+    [SerializeField] private GameObject panelSkillHUD;
+    [SerializeField] private GameObject MobileControls;
+    private void Awake()
     {
-        if (ammoText == null || healthFillImage == null) return;
-
-        if (_targetPlayer == null)
+        // Đảm bảo chỉ có 1 UI duy nhất tồn tại
+        if (Instance == null)
         {
-            FindLocalPlayer();
-            if (_targetPlayer == null) return;
-        }
-
-        if(_targetHealth == null)
-        {
-            _targetHealth = _targetPlayer.GetComponent<HealthComponent>();
-
-            if (_targetHealth == null) return;
-        }
-
-        if(_targetHealth.MaxHealth > 0)
-        {
-            float hpPercent = (float)_targetHealth.CurrentHealth / _targetHealth.MaxHealth;
-            healthFillImage.fillAmount = hpPercent;
-        }
-
-        // Cập nhật Đạn
-        if (_targetPlayer.IsReloading)
-        {
-            ammoText.text = "RELOAD...";
-            ammoText.color = Color.yellow;
+            Instance = this;
         }
         else
         {
-            ammoText.text = $"{_targetPlayer.CurrentAmmo}";
-            ammoText.color = Color.white;
+            Destroy(gameObject);
         }
-
-        if (dashOverlayImage != null)
-        {
-            UpdateDashUI();
-        }
-
-
     }
 
-
-    void FindLocalPlayer()
+    private void Start()
     {
-        var players = FindObjectsOfType<PlayerController>();
-        foreach (var p in players)
+        CheckThePhone();
+    }
+
+    private void CheckThePhone()
+    {
+        if (Application.isMobilePlatform)
         {
-            if (p.Object != null && p.Object.HasInputAuthority)
+    
+            if (panelSkillHUD != null && MobileControls != null)
             {
-                _targetPlayer = p;
-                _targetHealth = p.GetComponent<HealthComponent>();
-                break;
+                panelSkillHUD.SetActive(false);
+                MobileControls.SetActive(true);
+            }
+        }
+        else
+        {
+            if (panelSkillHUD != null && MobileControls != null)
+            {
+                panelSkillHUD.SetActive(false);
+                MobileControls.SetActive(true);
             }
         }
     }
 
-    void UpdateDashUI()
+    // --- CÁC HÀM CẬP NHẬT (Player sẽ gọi mấy hàm này) ---
+
+    // 1. Cập nhật Máu
+    public void UpdateHealthUI(float currentHealth, float maxHealth)
     {
-        // Kiểm tra xem Timer hồi chiêu có đang chạy không
-        if (_targetPlayer.DashCooldownTimer.IsRunning)
+        if (healthFillImage != null)
         {
-            // Tính thời gian còn lại
-            // RemainingTime trả về float? (nullable), nên cần ?? 0 để lấy giá trị mặc định
-            float remainingTime = _targetPlayer.DashCooldownTimer.RemainingTime(_targetPlayer.Runner) ?? 0;
-
-            // Tính phần trăm: Thời gian còn lại / Tổng thời gian hồi
-            float fillRatio = remainingTime / _targetPlayer.dashCooldown;
-
-            // Cập nhật hình ảnh (0 = hết che, 1 = che kín)
-            dashOverlayImage.enabled = true;
-            dashOverlayImage.fillAmount = fillRatio;
+            // Tránh chia cho 0
+            float percent = (maxHealth > 0) ? (currentHealth / maxHealth) : 0;
+            healthFillImage.fillAmount = percent;
         }
-        else
+    }
+
+    // 2. Cập nhật Dash (Hiển thị thời gian hồi chiêu)
+    public void UpdateDashUI(float currentTimer, float maxCooldown)
+    {
+        // Tính toán phần trăm (chỉ tính 1 lần)
+        float percent = 0;
+        bool isCooldown = (currentTimer > 0 && maxCooldown > 0);
+
+        if (isCooldown)
         {
-            // Nếu không chạy (đã hồi xong) -> Xóa lớp che đi (fill = 0)
-            dashOverlayImage.enabled =false;
-            dashOverlayImage.fillAmount = 0f;
+            percent = currentTimer / maxCooldown;
+        }
+
+        // 3. Lặp qua tất cả các ảnh trong danh sách và cập nhật từng cái
+        if (dashFillImages != null)
+        {
+            foreach (var img in dashFillImages)
+            {
+                if (img != null)
+                {
+                    if (isCooldown)
+                    {
+                        img.enabled = true; 
+                        img.fillAmount = percent;
+                    }
+                    else
+                    {
+                        img.enabled = false;
+                    }
+                }
+            }
+        }
+    }
+
+    // 3. Cập nhật Đạn
+    public void UpdateAmmoUI(int current, int max)
+    {
+        if (ammoText != null)
+        {
+            ammoText.text = $"{current}/{max}";
         }
     }
 }

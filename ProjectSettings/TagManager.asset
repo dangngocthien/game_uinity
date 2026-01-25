@@ -50,3 +50,9 @@ TagManager:
   - name: Hp_Bar
     uniqueID: 1359260789
     locked: 0
+  - name: Bullet
+    uniqueID: 785114459
+    locked: 0
+  - name: Trail renderer
+    uniqueID: 3338063123
+    locked: 0

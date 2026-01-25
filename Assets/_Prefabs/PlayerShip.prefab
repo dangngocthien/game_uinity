@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 1248098888740684778}
   - component: {fileID: 7026219832946588749}
   - component: {fileID: 1902541243741638289}
+  - component: {fileID: -5900032757524838288}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: Player
@@ -301,9 +302,9 @@ MonoBehaviour:
   firePoint: {fileID: 7596673748376917251}
   MaxAmmo: 20
   reloadTime: 3
-  dashSpeed: 20
-  dashDuration: 0.2
-  dashCooldown: 1.5
+  dashSpeed: 40
+  dashDuration: 0.1
+  dashCooldown: 3
   defaultBullet:
     RawGuidValue: 632a107efd91853489315be6b08c80c0
   _ActiveBulletPrefab:
@@ -312,6 +313,7 @@ MonoBehaviour:
   _IsReloading: 0
   _visualTransform: {fileID: 5716536449382097569}
   visualPrefab: {fileID: 8368382038149215691, guid: 2537de0bb2a3f4a41a5898193a038ac2, type: 3}
+  dashTrail: {fileID: 2850953546927004628, guid: 2537de0bb2a3f4a41a5898193a038ac2, type: 3}
 --- !u!50 &8597659981771247293
 Rigidbody2D:
   serializedVersion: 4
@@ -545,6 +547,21 @@ MonoBehaviour:
     Position: 0.01
     Rotation: 0.01
     Scale: 0.01
+--- !u!114 &-5900032757524838288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5873965024841314495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1756098e94fdd44abcc25a8dd62774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab:
+    RawGuidValue: 024126551288c3245a50a39bf7120f8a
+  spawnOffsetY: 0.5
 --- !u!1 &7496263097423688672
 GameObject:
   m_ObjectHideFlags: 0
