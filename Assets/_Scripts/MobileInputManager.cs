@@ -21,6 +21,6 @@ public class MobileInputManager : MonoBehaviour
     public void SetVertical(float val) { MoveDirection = new Vector2(MoveDirection.x, val); }
 
     // Hàm cho nút Bắn/Lướt
-    public void SetFiring(bool state) => IsFiring = false;
+    public void SetFiring(bool state) => IsFiring = state;
     public void SetDashing(bool state) => IsDashing = state;
 }
