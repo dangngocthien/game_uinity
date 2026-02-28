@@ -161,7 +161,7 @@ public class PlayerController : NetworkBehaviour
             // Hủy đăng ký sự kiện chết
             _healthComponent.OnDeathEvent -= OnDeathHandler;
             
-            // ✅ THÊM: Hủy đăng ký sự kiện thay đổi máu (LOCAL PLAYER ONLY)
+            // Hủy đăng ký sự kiện thay đổi máu (LOCAL PLAYER ONLY)
             // Điều này ngăn chặn memory leak khi player bị despawn
             _healthComponent.OnHealthChangedEvent -= OnLocalHealthChanged;
         }
@@ -189,7 +189,6 @@ public class PlayerController : NetworkBehaviour
     {
         Debug.Log($"[Check Win] Số người còn sống: {ActivePlayers.Count} | Tổng người trong phòng: {Runner.SessionInfo.PlayerCount}");
         // Nếu danh sách chỉ còn đúng 1 người
-        // VÀ GameMode không phải là Single Player (đề phòng test một mình)
         if (ActivePlayers.Count == 1 && Runner.SessionInfo.PlayerCount > 1)
         {
             // Lấy người sống sót cuối cùng ra
